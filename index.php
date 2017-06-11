@@ -1,16 +1,21 @@
 <?php
 if (isset($_GET['name']) && isset($_GET['pass']) && !empty($_GET['name']) && !empty($_GET['pass'])) {
+    // some resource with usernames and md5 hash of passwords
     include 'usernames.txt';
     if (isset($userArray[$_GET['name']])) {
+        // get md5 from password visitor has input
         $passMd5 = md5($_GET['pass']);
+        // check if array contains such username and password
         if ($userArray[$_GET['name']] == $passMd5) {
             $_SESSION['user'] = $_GET['name'];
         }
         else {
+            // clear session if password is wrong
             unset($_SESSION['user']);
         }
     }
     else {
+        // clear session if username is wrong
         unset($_SESSION['user']);
     }
 }
