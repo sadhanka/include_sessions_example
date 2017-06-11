@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+// don't allow users without session access other pages
 if (isset($_GET['page']) && !isset($_SESSION['user'])) {
     header('Location: page.php');
 }
